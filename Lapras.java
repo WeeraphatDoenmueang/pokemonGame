@@ -14,7 +14,7 @@ public final class Lapras extends Pokeman {
   
   public Lapras(String name, float weight, float stepLength)
   {
-    super(name, weight, stepLength, 2.0F, new String[] { "Water" });
+    super(name, weight, stepLength, 2.0F, new String[] { "Water,Lapras" },new String[] { "Lapras" });
   }
   
   public void walk()

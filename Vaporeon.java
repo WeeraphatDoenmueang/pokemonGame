@@ -14,7 +14,7 @@ public final class Vaporeon extends Pokeman {
   
   public Vaporeon(String name, float weight, float stepLength)
   {
-    super(name, weight, stepLength, 2.0F, new String[] { "Water" });
+    super(name, weight, stepLength, 2.0F, new String[] { "Water,Vaporeon" },new String[] {"Vaporeon"});
   }
   
   public void walk()

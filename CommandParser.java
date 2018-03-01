@@ -64,11 +64,6 @@ public class CommandParser {
     String name = this.scan.nextLine();
     float weight = (float)Math.random() * 100.0F;
     float stepLength = (float)Math.random() * 5.0F;
-    if (pokemonType.equals("Vaporeon"))
-    {
-      Vaporeon vaporeon = new Vaporeon(name, weight, stepLength);
-      this.pokeFarm.addPokemon(vaporeon);
-    }
     if (pokemonType.equals("Lapras"))
     {
       Lapras lapras = new Lapras(name, weight, stepLength);
@@ -79,13 +74,53 @@ public class CommandParser {
       Eevee eevee = new Eevee(name, weight, stepLength);
       this.pokeFarm.addPokemon(eevee);
     }
+    if (pokemonType.equals("Squirtle"))
+    {
+      Squirtle squirtle = new Squirtle(name, weight, stepLength);
+      this.pokeFarm.addPokemon(squirtle);
+    }
+  }
+  private void evolutionAddPokemon(String pokemonType)
+  {
+    System.out.print("Name:");
+    String name = this.scan.nextLine();
+    float weight = (float)Math.random() * 100.0F;
+    float stepLength = (float)Math.random() * 5.0F;
+    if(pokemonType.equals("Wartortle"))
+    {
+      Wartortle wartortle = new Wartortle(name, weight*2F, stepLength*2F);
+      this.pokeFarm.addPokemon(wartortle);
+    }
+    if(pokemonType.equals("Blastoise"))
+    {
+      Blastoise blastoise = new Blastoise(name, weight*3F, stepLength*3F);
+      this.pokeFarm.addPokemon(blastoise);
+    }
+    if (pokemonType.equals("Vaporeon"))
+    {
+      Vaporeon vaporeon = new Vaporeon(name, weight, stepLength);
+      this.pokeFarm.addPokemon(vaporeon);
+    }
   }
   private void evolutionPokemon(){
     this.scan.nextLine();
     System.out.print("Pokemon you want to evolution slot:");
     int index = this.scan.nextInt();
-    addPokemon("Vaporeon");
-    removeevoPokemon(index);
+    this.scan.nextLine();
+    System.out.print("What is this pokemon(Eevee/Squirtle/Wartortle):");
+    String pokemonType = this.scan.nextLine();
+    if(pokemonType.equals("Eevee")){
+        evolutionAddPokemon("Vaporeon"); 
+        removeEvoPokemon(index);
+    }
+    if(pokemonType.equals("Squirtle")){
+        evolutionAddPokemon("Wartortle"); 
+        removeEvoPokemon(index);
+    }
+    if(pokemonType.equals("Wartortle")){
+        evolutionAddPokemon("Blastoise");
+        removeEvoPokemon(index);
+    }
   }
   private void listPokemons()
   {
@@ -95,7 +130,7 @@ public class CommandParser {
     this.pokeFarm.list();
     System.out.println("==========================================");
   }
-  private void removeevoPokemon(int index)
+  private void removeEvoPokemon(int index)
   {
     this.pokeFarm.removePokemon(index);
   }
@@ -123,7 +158,7 @@ public class CommandParser {
   private void catchPokemon()
   {
     this.scan.nextLine();   
-    System.out.print("Pokemon(Vaporeon/Lapras/Eevee):");
+    System.out.print("Pokemon(Lapras/Eevee/Squirtle):");
     String pokemonType = this.scan.nextLine();
     System.out.println("Choose Ball(pokeball/greatball/ultraball)");
     String ball = this.scan.next();
@@ -160,5 +195,4 @@ public class CommandParser {
             System.out.println("Fail("+catchRate+")");
         }
         }
-    }
-}
+    }}

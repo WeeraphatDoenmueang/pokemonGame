@@ -14,7 +14,7 @@ public final class Eevee extends Pokeman {
   
   public Eevee(String name, float weight, float stepLength)
   {
-    super(name, weight, stepLength, 2.0F, new String[] { "Natural" });
+    super(name, weight, stepLength, 2.0F, new String[] { "Natural,Eevee" },new String[] {"Eevee"});
   }
   
   public void walk()

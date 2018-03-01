@@ -16,8 +16,9 @@ public class Pokemon {
   private int step;
   private float gainingWeightStep;
   private String[] types;
+  String[] pokemonType;
   
-  public Pokemon(String name, float weight, float stepLength, float gainingWeightStep, String[] types)
+  public Pokemon(String name, float weight, float stepLength, float gainingWeightStep, String[] types,String[] pokemonType)
   {
     this.name = name;
     this.weight = weight;
@@ -30,7 +31,10 @@ public class Pokemon {
       this.types = types;
     }
   }
-  
+   public String[] viewType()
+  {
+    return this.pokemonType;
+  }
   public void walk()
   {
     this.step += 1;

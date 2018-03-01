@@ -28,7 +28,14 @@ public class PokeFarm {
   {
     this.pokemons.remove(index);
   }
-  
+    /**
+     *
+     * @param index
+     */
+    public String[] viewType(int index)
+  {
+    return this.pokemons.get(index).viewType();
+  }
   public void list()
   {
     for (Pokeman pokemon : this.pokemons) {
