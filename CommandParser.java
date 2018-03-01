@@ -29,7 +29,7 @@ public class CommandParser {
     System.out.println("Welcome to PokeFarm");
     while (this.isControl)
     {
-      System.out.println("What do you want to do?");
+      System.out.println("What do you want to do?(catch/remove/list/move/feed/quit/evo)");
       String type = this.scan.next();
       switch (type)
       {
@@ -51,19 +51,17 @@ public class CommandParser {
         break;
       case "feed": 
         feedPokemons();
+      case "evo":
+        evolutionPokemon();
       }
     }
   }
   
-  private void addPokemon()
+  private void addPokemon(String pokemonType)
   {
     this.scan.nextLine();
-    
-    System.out.print("Pokemon:");
-    String pokemonType = this.scan.nextLine();
     System.out.print("Name:");
     String name = this.scan.nextLine();
-    
     float weight = (float)Math.random() * 100.0F;
     float stepLength = (float)Math.random() * 5.0F;
     if (pokemonType.equals("Vaporeon"))
@@ -76,8 +74,19 @@ public class CommandParser {
       Lapras lapras = new Lapras(name, weight, stepLength);
       this.pokeFarm.addPokemon(lapras);
     }
+    if (pokemonType.equals("Eevee"))
+    {
+      Eevee eevee = new Eevee(name, weight, stepLength);
+      this.pokeFarm.addPokemon(eevee);
+    }
   }
-  
+  private void evolutionPokemon(){
+    this.scan.nextLine();
+    System.out.print("Pokemon you want to evolution slot:");
+    int index = this.scan.nextInt();
+    addPokemon("Vaporeon");
+    removeevoPokemon(index);
+  }
   private void listPokemons()
   {
     System.out.println("==========================================");
@@ -86,7 +95,10 @@ public class CommandParser {
     this.pokeFarm.list();
     System.out.println("==========================================");
   }
-  
+  private void removeevoPokemon(int index)
+  {
+    this.pokeFarm.removePokemon(index);
+  }
   private void removePokemon()
   {
     System.out.print("index to remove : ");
@@ -110,36 +122,39 @@ public class CommandParser {
   }
   private void catchPokemon()
   {
-    System.out.println("Choose Ball");
+    this.scan.nextLine();   
+    System.out.print("Pokemon(Vaporeon/Lapras/Eevee):");
+    String pokemonType = this.scan.nextLine();
+    System.out.println("Choose Ball(pokeball/greatball/ultraball)");
     String ball = this.scan.next();
     if (ball.equals("pokeball")){
-        float rate = (float)Math.random();
-        float catchRate = rate+0.8F;
-        if((catchRate)>1){
+        float mood = (float)Math.random();
+        float catchRate = mood*0.8F;
+        if((catchRate)>0.5){
             System.out.println("Success("+catchRate+")");
-            addPokemon();
+            addPokemon(pokemonType);
         }
         else{
             System.out.println("Fail("+catchRate+")");
         }
     }
     if (ball.equals("greatball")){
-        float rate = (float)Math.random();
-        float catchRate = rate+0.9F;
-        if((catchRate)>1){
+        float mood = (float)Math.random();
+        float catchRate = mood*0.9F;
+        if((catchRate)>0.5){
             System.out.println("Success("+catchRate+")");
-            addPokemon();
+            addPokemon(pokemonType);
         }
         else{
             System.out.println("Fail("+catchRate+")");
         }
     }
     if (ball.equals("ultraball")){
-         float rate = (float)Math.random();
-         float catchRate = rate+1.0F;
-        if((catchRate)>1){
+         float mood = (float)Math.random();
+         float catchRate = mood*1.0F;
+        if((catchRate)>0.5){
             System.out.println("Success("+catchRate+")");
-            addPokemon();
+            addPokemon(pokemonType);
         }
         else{
             System.out.println("Fail("+catchRate+")");

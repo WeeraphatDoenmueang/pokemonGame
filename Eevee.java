@@ -9,16 +9,16 @@ package pokemongame;
  *
  * @author Fook
  */
-public final class Vaporeon extends Pokeman {
+public final class Eevee extends Pokeman {
     float step;
   
-  public Vaporeon(String name, float weight, float stepLength)
+  public Eevee(String name, float weight, float stepLength)
   {
-    super(name, weight, stepLength, 2.0F, new String[] { "Water" });
+    super(name, weight, stepLength, 2.0F, new String[] { "Natural" });
   }
   
   public void walk()
   {
-    this.step += 3.0F;
+    this.step += 2.0F;
   }
 }
