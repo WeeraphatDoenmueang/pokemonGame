@@ -29,7 +29,7 @@ public class CommandParser {
     System.out.println("Welcome to PokeFarm");
     while (this.isControl)
     {
-      System.out.println("What do you want to do?(catch/remove/list/move/feed/quit/evo)");
+      System.out.println("What do you want to do?(find/remove/list/move/feed/quit/evo)");
       String type = this.scan.next();
       switch (type)
       {
@@ -37,8 +37,8 @@ public class CommandParser {
         this.isControl = false;
         System.out.println("            Thank you           ");
         break;
-      case "catch":
-        catchPokemon();
+      case "find":
+        findPokemon();
         break;
       case "remove": 
         removePokemon();
@@ -155,11 +155,30 @@ public class CommandParser {
     System.out.println("Walk");
     this.pokeFarm.walk();
   }
-  private void catchPokemon()
+  private void findPokemon(){
+      float foundRate = (float)Math.random();
+      if((foundRate)>0.3){
+          float pokeRate =(float)Math.random();
+          if((pokeRate) <= 0.3){
+            System.out.println("You Found Pokemon Lapras ");
+            catchPokemon("Lapras");
+          }
+          if((pokeRate) > 0.3 && (pokeRate) <= 0.6){
+            System.out.println("You Found Pokemon Eevee");
+            catchPokemon("Eevee");
+          }
+          if((pokeRate) > 0.6 ){
+            System.out.println("You Found Pokemon Squirtle");
+            catchPokemon("Squirtle");
+          }
+      }
+      else{
+      System.out.println("Not Found Try Again!!");
+      }
+  }
+  private void catchPokemon(String pokemonType)
   {
     this.scan.nextLine();   
-    System.out.print("Pokemon(Lapras/Eevee/Squirtle):");
-    String pokemonType = this.scan.nextLine();
     System.out.println("Choose Ball(pokeball/greatball/ultraball)");
     String ball = this.scan.next();
     if (ball.equals("pokeball")){
